@@ -24,7 +24,7 @@ A procedural Blender pipeline for photorealistic rendering.
 
 ## Installation
 
-### Via pip
+#### Via pip
 
 The simplest way to install blenderproc is via pip:
 
