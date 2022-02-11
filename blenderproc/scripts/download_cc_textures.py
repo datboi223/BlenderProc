@@ -1,3 +1,4 @@
+import blenderproc as bproc
 from sys import version_info, path
 if version_info.major == 2:
     raise Exception("This script only works with python3.x!")
@@ -58,8 +59,16 @@ def cli():
         if not os.path.exists(current_folder):
             os.makedirs(current_folder)
         current_file_path = os.path.join(current_folder, "{}.zip".format(asset))
-        response = requests.get(link, headers=headers)
-        SetupUtility.extract_from_response(current_folder, response)
+        while True:
+            try:
+                response = requests.get(link, headers=headers)
+                SetupUtility.extract_from_response(current_folder, response)
+                break
+            except Exception as e:
+                print('What: ', e, end='\t')
+                print('Another one!')
+
+        # SetupUtility.extract_from_response(current_folder, response)
 
     print("Done downloading textures, saved in {}".format(cc_texture_dir))
 
